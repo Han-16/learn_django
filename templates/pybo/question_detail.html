@@ -5,9 +5,25 @@
     <title>Title</title>
 </head>
 <body>
+
   <h1>{{ question.subject }}</h1>
   <div>
       {{ question.content }}
   </div>
+
+  <h5>{{ question.answer_set.count }}개의 답변이 있어용.</h5>
+  <div>
+      <ul>
+          {% for answer in question.answer_set.all %}
+            <li>{{ answer.content }}</li>
+          {% endfor %}
+      </ul>
+  </div>
+
+  <form action = "{% url 'pybo:answer_create' question.id %}" method="post">
+      {% csrf_token %}
+      <textarea name="content" id="content" row="15"></textarea>
+      <input type="submit" value="답변등록">
+  </form>
 </body>
 </html>
