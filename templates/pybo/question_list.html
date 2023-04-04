@@ -1,13 +1,14 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-
+<!--{% load static %}-->
+<!--<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">-->
+{% extends 'base.html' %}
+{% block content %}
 <div class="container my-3">
     <table class="table">
         <thead>
         <tr class="table-dark">
             <th>번호</th>
             <th>제목</th>
-            <th>작성 일시</th>
+            <th>작성일시</th>
         </tr>
         </thead>
         <tbody>
@@ -23,9 +24,10 @@
         {% endfor %}
         {% else %}
         <tr>
-            <td colspan="3">질문이 없는데용?</td>
+            <td colspan="3">질문이 없습니다.</td>
         </tr>
         {% endif %}
         </tbody>
     </table>
 </div>
+{% endblock %}
