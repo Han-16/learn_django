@@ -26,8 +26,8 @@ def question_create(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST)
         if form.is_valid():
-            question = form.save(commit=False)
-            question.create_date = timezone.now()
+            question = form.save(commit=False)     # QuestionForm은 question 데이터베이스와 연결되어있음
+            question.create_date = timezone.now()  # 그래서 바로 저장을 하게되면 create_date가 없어서 오류가 남.
             question.save()
             return redirect('pybo:index')
     else:
