@@ -7,9 +7,13 @@
     <list default="true" id="5fc05109-3eeb-4c87-8055-0a106161f467" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pybo/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/pybo/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pybo/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/pybo/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/common/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/common/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pybo/question_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pybo/question_detail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
