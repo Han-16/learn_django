@@ -10,10 +10,13 @@
   <title>Hello, pypybo!</title>
 </head>
 <body>
+
 <!--네비게이션바-->
 {% include "navbar.html" %}
 {% block content %}
 {% endblock %}
 <script src="{% static 'bootstrap.min.js' %}"></script>
+{% block script %}
+{% endblock %}
 </body>
 </html>
