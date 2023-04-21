@@ -51,3 +51,12 @@ def answer_delete(request, answer_id):
     else:
         answer.delete()
     return redirect('pybo:detail', question_id = answer.question.id)
+
+@login_required(login_url='common:login')
+def answer_vote(request, answer_id):
+    answer = get_object_or_404(Answer, pk=answer_id)
+    if request.user == answer.author:
+        messages.error(request, "자신 글 추천 불가")
+    else:
+        answer.voter.add(request.user)
+    return redirect('pybo:detail', question_id = answer.question.id)
