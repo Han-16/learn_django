@@ -25,6 +25,7 @@ def question_create(request):
 @login_required(login_url='common:login')
 def question_modify(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
+    print(f"question_modify_count : {question.modify_count}")
     if request.user != question.author:
         messages.error(request, '수정권한이 없는데용?')
         return redirect('pybo:detail', question_id=question.id)
@@ -33,6 +34,7 @@ def question_modify(request, question_id):
         if form.is_valid():
             question = form.save(commit=False)
             question.modify_date = timezone.now()  # 수정일시 저장
+            question.modify_count += 1
             question.save()
             return redirect('pybo:detail', question_id=question.id)
     else:
@@ -54,7 +56,7 @@ def question_delete(request, question_id):
 def question_vote(request, question_id):
     question = get_object_or_404(Question, pk = question_id)
     if request.user == question.author:
-        messages.error(request, "자신의 글은 추천할 수 없다네 홀홀")
+        messages.error(request, "자추는 좀 그렇지?")
     else:
         question.voter.add(request.user)
     return redirect('pybo:detail', question_id = question.id)

@@ -20,7 +20,9 @@
                 {% if question.modify_date %}
                 <div class="badge bg-light text-dark p-2 text-start mx-3">
                     <div class="mb-2">modified at</div>
-                    <div>{{ question.modify_date }}</div>
+                    <div>{{ question.modify_date }}</div><br>
+                    <div class="mb-2">num of modified</div>
+                    <div>{{ question.modify_count }}</div>
                 </div>
                 {% endif %}
                 <div class="badge bg-light text-dark p-2 text-start">
@@ -79,7 +81,9 @@
                 {% if answer.modify_date %}
                 <div class="badge bg-light text-dark p-2 text-start mx-3">
                     <div class="mb-2">modified at</div>
-                    <div>{{ answer.modify_date }}</div>
+                    <div>{{ answer.modify_date }}</div><br>
+                    <div class="mb-2">num of modified</div>
+                    <div>{{ answer.modify_count }}</div>
                 </div>
                 {% endif %}
                 <div class="badge bg-light text-dark p-2 text-start">

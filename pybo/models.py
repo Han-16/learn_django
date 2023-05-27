@@ -7,6 +7,7 @@ class Question(models.Model):
     content = models.TextField()
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
+    modify_count = models.IntegerField(default=0)
     voter = models.ManyToManyField(User, related_name = 'voter_question') # 추천인 추가
 
     def __str__(self):
@@ -18,15 +19,17 @@ class Answer(models.Model):
     content = models.TextField()
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
+    modify_count = models.IntegerField(default=0)
     voter = models.ManyToManyField(User, related_name = 'voter_answer')
 
     def __str__(self):
         return self.content
 
 class Comment(models.Model):
-    author = models.ForeignKey(User, on_delete = models.CASCADE)
+    author = models.ForeignKey(User, on_delete = models.CASCADE, related_name="auth_comment")
     content = models.TextField()
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null = True, blank = True)
     question = models.ForeignKey(Question, null = True, blank = True, on_delete = models.CASCADE)
     answer = models.ForeignKey(Answer, null = True, blank = True, on_delete = models.CASCADE)
+    voter = models.ManyToManyField(User, related_name='voter_comment')
