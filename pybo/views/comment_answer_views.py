@@ -60,4 +60,4 @@ def comment_vote_answer(request, comment_id):
         messages.error(request, "자추 불가 ㅋㅋ")
     else:
         comment.voter.add(request.user)
-    return redirect('pybo:detail', question_id = comment.question.id)
+    return redirect('pybo:detail', question_id = comment.answer.question.id)
