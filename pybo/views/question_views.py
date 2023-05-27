@@ -25,7 +25,6 @@ def question_create(request):
 @login_required(login_url='common:login')
 def question_modify(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    print(f"question_modify_count : {question.modify_count}")
     if request.user != question.author:
         messages.error(request, '수정권한이 없는데용?')
         return redirect('pybo:detail', question_id=question.id)

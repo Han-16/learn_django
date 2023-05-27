@@ -119,7 +119,7 @@
                     <span>
                         - {{ comment.author }}, {{ comment.create_date }}
                         {% if comment.modify_date %}
-                        (수정: {{ comment.modify_date }})
+                        (수정 : {{ comment.modify_date }}  댓글 수정 횟수 : {{ comment.modify_count }})
                         {% endif %}
                     </span>
                     {% if request.user == comment.author %}
@@ -131,7 +131,7 @@
                     </a>
                     {% endif %}
                 <div class="my-3">
-                    <a href="javascript:void(0)" data-uri="{% url 'pybo:comment_vote_question' comment.id %}"
+                    <a href="javascript:void(0)" data-uri="{% url 'pybo:comment_vote_answer' comment.id %}"
                        class="recommend btn btn-sm btn-outline-secondary">
                         추천
                         <span class="badge rounded-pill bg-success">{{ comment.voter.count }}</span></a>

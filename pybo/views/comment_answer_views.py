@@ -5,8 +5,6 @@ from ..forms import AnswerForm, CommentForm
 from django.utils import timezone
 from ..models import Question, Answer, Comment
 
-
-
 @login_required(login_url='common:login')
 def comment_create_answer(request, answer_id):
     answer = get_object_or_404(Answer, pk=answer_id)
@@ -17,7 +15,6 @@ def comment_create_answer(request, answer_id):
             comment.author = request.user
             comment.create_date = timezone.now()
             comment.answer = answer
-            comment.modify_count += 1
             comment.save()
             return redirect('pybo:detail', question_id=comment.answer.question.id)
     else:
@@ -25,13 +22,12 @@ def comment_create_answer(request, answer_id):
     context = {'form': form}
     return render(request, 'pybo/comment_form.html', context)
 
-
 @login_required(login_url='common:login')
 def comment_modify_answer(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.author:
         messages.error(request, '댓글수정권한이 없습니다')
-        return redirect('pybo:detail', question_id=comment.answer.question.id)
+        return redirect('pybo:detail', question_id=comment.question.id)
 
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
@@ -39,13 +35,13 @@ def comment_modify_answer(request, comment_id):
             comment = form.save(commit=False)
             comment.author = request.user
             comment.modify_date = timezone.now()
+            comment.modify_count += 1
             comment.save()
             return redirect('pybo:detail', question_id=comment.answer.question.id)
     else:
         form = CommentForm(instance=comment)
-    context = {'form': form}
+    context = { 'form': form }
     return render(request, 'pybo/comment_form.html', context)
-
 
 @login_required(login_url='common:login')
 def comment_delete_answer(request, comment_id):
