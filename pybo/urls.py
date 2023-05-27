@@ -21,9 +21,11 @@ urlpatterns = [
     path('comment/create/question/<int:question_id>', comment_question_views.comment_create_question, name = "comment_create_question"),
     path('comment/modify/question/<int:comment_id>', comment_question_views.comment_modify_question,  name = "comment_modify_question"),
     path('comment/delete/question/<int:comment_id>', comment_question_views.comment_delete_question,  name = "comment_delete_question"),
+    path('comment/vote/question/<int:comment_id>', comment_question_views.comment_vote_question, name = "comment_vote_question"),
 
     path('comment/create/answer/<int:answer_id>', comment_answer_views.comment_create_answer,  name="comment_create_answer"),
     path('comment/modify/answer/<int:comment_id>', comment_answer_views.comment_modify_answer, name="comment_modify_answer"),
     path('comment/delete/answer/<int:comment_id>', comment_answer_views.comment_delete_answer, name="comment_delete_answer"),
+    path('comment/vote/answer/<int:comment_id>', comment_answer_views.comment_vote_answer, name="comment_vote_answer"),
 ]
 
