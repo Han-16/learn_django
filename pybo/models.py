@@ -12,7 +12,6 @@ class Question(models.Model):
 
     def __str__(self):
         return self.subject
-
 class Answer(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'author_answer')
     question = models.ForeignKey(Question, on_delete = models.CASCADE)
