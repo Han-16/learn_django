@@ -10,7 +10,9 @@ from ..models import Question, Answer, Comment
 @login_required(login_url='common:login')
 def comment_modify_answer(request, comment_id):
     """
-    pybo 답글댓글수정
+    :param request:
+    :param comment_id: 수정할 comment id
+    :return: 수정한 comment 반영한 comment.answer.question.id의 detail_page render
     """
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.author:
@@ -36,7 +38,10 @@ def comment_modify_answer(request, comment_id):
 @login_required(login_url='common:login')
 def comment_create_answer(request, answer_id):
     """
-    pybo 답글댓글등록
+    답변 댓글 등록
+    :param request:
+    :param answer_id:
+    :return:
     """
     answer = get_object_or_404(Answer, pk=answer_id)
     if request.method == "POST":
@@ -46,6 +51,7 @@ def comment_create_answer(request, answer_id):
             comment.author = request.user
             comment.create_date = timezone.now()
             comment.answer = answer
+
             comment.save()
             return redirect('{}#comment_{}'.format(
                 resolve_url('pybo:detail', question_id=comment.answer.question.id), comment.id))
