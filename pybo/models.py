@@ -33,3 +33,6 @@ class Comment(models.Model):
     answer = models.ForeignKey(Answer, null = True, blank = True, on_delete = models.CASCADE)
     voter = models.ManyToManyField(User, related_name='voter_comment')
     modify_count = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.content

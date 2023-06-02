@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q, Count
 from django.shortcuts import render, get_object_or_404
 
-from ..models import Question
+from ..models import Question, Comment
 
 logger = logging.getLogger('pybo')
 
@@ -45,6 +45,19 @@ def detail(request, question_id):
     """
     pybo 내용 출력
     """
+    # 질문 댓글 pagination 해야함.
+    page = request.GET.get('page', '1')
     question = get_object_or_404(Question, pk=question_id)
-    context = {'question': question}
+    so = request.GET.get('so', 'recent')  # 정렬기준
+    basic_comment_list = Comment.objects.filter(question = question)
+
+    # 정렬
+    if so == 'recommend':
+        comment_list = basic_comment_list.annotate(num_voter=Count('voter')).order_by('-num_voter', '-create_date')
+    else:  # recent
+        comment_list = basic_comment_list.order_by('-create_date')
+
+    paginator = Paginator(comment_list, 10)
+    page_obj = paginator.get_page(page)
+    context = {'question': question, 'comment_list' : page_obj, 'page' : page, 'so' : so}
     return render(request, 'pybo/question_detail.html', context)
