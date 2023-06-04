@@ -37,7 +37,7 @@
                 <a href="javascript:void(0)" data-uri="{% url 'pybo:vote_question' question.id %}"
                     class="recommend btn btn-sm btn-outline-secondary">
                     추천
-                    <span class="badge rounded-pill bg-success">{{ question.voter.count }}</span></a>
+                    <span class="badge rounded-pill bg-light">{{ question.voter.count }}</span></a>
                 {% if request.user == question.author %}
                 <a href="{% url 'pybo:question_modify' question.id  %}" class="btn btn-sm btn-outline-secondary">수정</a>
                 <a href="javascript:void(0)" class="delete btn btn-sm btn-outline-secondary"
@@ -78,7 +78,7 @@
                         <a href="javascript:void(0)" data-uri="{% url 'pybo:vote_comment_question' comment.id %}"
                             class="recommend btn btn-sm btn-outline-secondary">
                             추천
-                            <span class="badge rounded-pill bg-success">{{ comment.voter.count }}</span></a>
+                            <span class="badge rounded-pill bg-light">{{ comment.voter.count }}</span></a>
                     </div>
                 </div>
                 {% endfor %}
@@ -155,7 +155,7 @@
             <div class="my-3">
                 <a href="javascript:void(0)" data-uri="{% url 'pybo:vote_answer' answer.id  %}"
                     class="recommend btn btn-sm btn-outline-secondary"> 추천
-                    <span class="badge rounded-pill bg-success">{{answer.voter.count}}</span>
+                    <span class="badge rounded-pill bg-light">{{answer.voter.count}}</span>
                 </a>
                 {% if request.user == answer.author %}
                 <a href="{% url 'pybo:answer_modify' answer.id %}" class="btn btn-sm btn-outline-secondary">수정</a>
@@ -185,7 +185,7 @@
                         <a href="#" data-uri="{% url 'pybo:vote_comment_answer' comment.id %}"
                             class="recommend btn btn-sm btn-outline-secondary">
                             추천
-                            <span class="badge rounded-pill bg-success">{{ comment.voter.count }}</span></a>
+                            <span class="badge rounded-pill bg-light">{{ comment.voter.count }}</span></a>
                     </div>
                 </div>
                 {% endfor %}
@@ -225,23 +225,20 @@
 
 {% block script %}
 <script type='text/javascript'>
-    const delete_elements = document.getElementsByClassName("delete");
-    Array.from(delete_elements).forEach(function (element) {
-        element.addEventListener('click', function () {
-            if (confirm("정말로 삭제하시겠습니까? 정말로? 진짜?")) {
-                location.href = this.dataset.uri;
-            };
-        });
+
+$(document).ready(function(){
+    $(".delete").on('click', function() {
+        if(confirm("정말로 삭제하시겠습니까? 정말로? 진짜?")) {
+            location.href = $(this).data('uri');
+        }
     });
 
-    const recommend_elements = document.getElementsByClassName("recommend");
-    Array.from(recommend_elements).forEach(function (element) {
-        element.addEventListener('click', function () {
-            if (confirm("정말 추천?")) {
-                location.href = this.dataset.uri;
-            };
-        });
+    $(".recommend").on('click', function() {
+        if(confirm("추천~?~?")) {
+            location.href = $(this).data('uri');
+        }
     });
+});
 
 
 $(document).ready(function(){
